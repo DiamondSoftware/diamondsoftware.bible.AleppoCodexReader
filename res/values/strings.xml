@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aleppo Codex Reader</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="help">Help Screen</string>
+    <string name="main_menu">Main Menu</string>
+	<string name="settings">Settings Menu</string>
+	<string name="splash">Splash Screen</string>
+	<string name="book_selection">Aleppo Book Selection</string>
+	<string name="book_viewer">Aleppo Book Viewer</string>
+</resources>
