@@ -6,7 +6,9 @@
     <string name="help">Help Screen</string>
     <string name="main_menu">Main Menu</string>
 	<string name="settings">Settings Menu</string>
-	<string name="splash">Splash Screen</string>
+	<string name="splash">Aleppo Codex Reader</string>
+	<string name="splash_desc1">Read The Aleppo Codex by Touch</string>
+	<string name="splash_desc2">Diamond Software</string>	
 	<string name="book_selection">Aleppo Book Selection</string>
 	<string name="book_viewer">Aleppo Book Viewer</string>
 </resources>

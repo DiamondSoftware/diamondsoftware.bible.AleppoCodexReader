@@ -1,16 +1,41 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".AleppoActivity" >
-
-    <TextView
-        android:layout_width="wrap_content"
+   	android:background="@color/DeepSkyBlue"    	
+   	android:orientation="vertical"    	
+   	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">    
+    	
+    	<TextView
+        android:id="@+id/TextViewTopTitle"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/splash" />
+        android:text="@string/splash" 
+        android:textColor="@color/Black" 
+        android:textSize="@dimen/title_font"
+        android:gravity="center" 
+        />
 
-</RelativeLayout>
+        <TextView
+        android:id="@+id/TextViewBottomTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/splash_desc1" 
+        android:textColor="@color/DarkOrchid" 
+        android:textSize="@dimen/desc_font" 
+        android:lineSpacingExtra="@dimen/line_spacing"         
+	    android:background="@color/Tomato"  
+	    android:gravity="center"  	
+        />
+    
+    	<TextView
+        android:id="@+id/TextViewBottomVersion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/splash_desc2" 
+        android:textColor="@color/DarkOrchid" 
+        android:textSize="@dimen/desc_font" 
+        android:lineSpacingExtra="@dimen/line_spacing"         
+	    android:background="@color/Tomato"    	
+        />
+    
+</LinearLayout>
