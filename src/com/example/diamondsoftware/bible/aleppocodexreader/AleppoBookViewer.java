@@ -9,6 +9,7 @@ import com.example.diamondsoftware.bible.aleppocodexreader.R;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -62,6 +63,9 @@ public class AleppoBookViewer extends ImageView {
 		super(context);
 		sharedConstructing(context);
 	}
+	
+	
+	
 
 	public AleppoBookViewer(Context context, AttributeSet attrs) {
 		super(context, attrs);

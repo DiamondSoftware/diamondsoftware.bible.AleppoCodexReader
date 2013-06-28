@@ -4,8 +4,10 @@ package com.example.diamondsoftware.bible.aleppocodexreader;
  * maracx@gmail.com
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 public class AleppoMainMenuActivity extends AleppoActivity {
 
@@ -21,5 +23,11 @@ public class AleppoMainMenuActivity extends AleppoActivity {
 		getMenuInflater().inflate(R.menu.aleppo, menu);
 		return true;
 	}
+
+	public void callBookSelection(View view) {		
+		Intent myIntent = new Intent(AleppoMainMenuActivity.this, AleppoBookSelectionActivity.class);
+		myIntent.putExtra("book","joshua"); 
+		AleppoMainMenuActivity.this.startActivity(myIntent);		
+	 }
 
 }
