@@ -25,7 +25,6 @@ public class AleppoBookSelectionActivity extends ListActivity {
 	    List<Verse> values = datasource.getAllVerses();
 	    adapter = new ArrayAdapter<Verse>(this, android.R.layout.simple_list_item_1, values);
 	    setListAdapter(adapter);
-	  
 	  }
 
 	  public void onClick(View view) 

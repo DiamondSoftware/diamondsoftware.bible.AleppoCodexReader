@@ -12,4 +12,8 @@
 	<string name="book_selection">Aleppo Book Selection</string>
 	<string name="book_viewer">Aleppo Book Viewer</string>
 	<string name="button_joshua">Joshua</string>
+	
+	<string name="button_back_page">Back</string>
+	<string name="button_next_page">Next</string>
+		
 </resources>

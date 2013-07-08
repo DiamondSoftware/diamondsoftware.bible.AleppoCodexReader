@@ -67,6 +67,11 @@ public class AleppoBookViewer extends ImageView {
     }
     
     
+    public int convertToDp(int input) { // Get the screen's density scale 
+    	final float logicalDensity = getResources().getDisplayMetrics().density; 
+    	// Convert the dps to pixels, based on density scale 
+    	return (int) (input * logicalDensity + 0.5f); 
+    	}
     
     
 	// Finds verse associated with coordinates
@@ -82,8 +87,8 @@ public class AleppoBookViewer extends ImageView {
 	    
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 		
-		GridLayout grid = (GridLayout) inflater.inflate(R.layout.activity_aleppo_book_viewer, null);				
-		final ListView verseList = (ListView) grid.findViewById(android.R.id.list);		
+		View aleppo_view = (View) inflater.inflate(R.layout.activity_aleppo_book_selection, null);				
+		final ListView verseList = (ListView) aleppo_view.findViewById(android.R.id.list);		
 		
 		ListActivity myListActivity  = (ListActivity) verseList.getContext();
 
@@ -97,7 +102,9 @@ public class AleppoBookViewer extends ImageView {
 	    
 	    double transformed_x = x * scaleFactor; 	   
 	    double transformed_y = y * scaleFactor; 
-
+	    
+	   Log.d("transformed_x_y ", "" + transformed_x +  " " + transformed_y);
+	   
 	    x= (int) Math.ceil(transformed_x); 	    
 	    y= (int) Math.ceil(transformed_y); 	    
 	   
