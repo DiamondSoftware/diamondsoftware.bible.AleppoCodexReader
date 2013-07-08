@@ -10,15 +10,29 @@
 
    
     <com.example.diamondsoftware.bible.aleppocodexreader.AleppoBookViewer
-    android:layout_height="332dp"
+    android:layout_height="600dp"
     android:layout_width="match_parent"   
     android:layout_gravity="left|top"
     android:baselineAlignBottom="false"
     android:cropToPadding="false"
     android:fitsSystemWindows="false"
-    android:maxHeight="800dp"
-    android:maxWidth="800dp"
+    android:maxHeight="1000dp"
+    android:maxWidth="1000dp"
     android:scaleType="centerInside"
     android:scrollbarAlwaysDrawVerticalTrack="false"
     android:src="@drawable/joshua" />
+    
+    
+     <ListView
+        android:id="@android:id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_gravity="bottom"
+        android:headerDividersEnabled="true"
+        tools:listitem="@android:layout/activity_list_item" >
+
+    </ListView>
+    
+    
+    
 </RelativeLayout>

@@ -4,28 +4,51 @@ package com.example.diamondsoftware.bible.aleppocodexreader;
  * maracx@gmail.com
  */
 
-import android.content.Intent;
+import java.util.List;
+
+import android.app.ListActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ArrayAdapter;
 
-public class AleppoBookSelectionActivity extends AleppoActivity {
+public class AleppoBookSelectionActivity extends ListActivity {
+	  private AleppoDataSource datasource;
+	  ArrayAdapter<Verse> adapter;
+	  
+	  @Override
+	  public void onCreate(Bundle savedInstanceState) 
+	  {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.activity_aleppo_book_selection);
+	    datasource = new AleppoDataSource(this);
+	    datasource.open();
+	    List<Verse> values = datasource.getAllVerses();
+	    adapter = new ArrayAdapter<Verse>(this, android.R.layout.simple_list_item_1, values);
+	    setListAdapter(adapter);
+	  
+	  }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_aleppo_book_selection);
-		Intent intent = getIntent();
-		String value = intent.getStringExtra("book"); //if it's a string you stored.
-		Toast t = Toast.makeText(getBaseContext(), value, 10);
-		t.show();
+	  public void onClick(View view) 
+	  {
+		@SuppressWarnings("unchecked")
+	    ArrayAdapter<Verse> adapter = (ArrayAdapter<Verse>) getListAdapter();
+	     switch (view.getId()) 
+	    {   
+	     // grab the index and manipulate the image so that the appropriate verse is highlighted on the image
+
+	    }
+	    adapter.notifyDataSetChanged();
+	  }
+
+	  @Override
+	  protected void onResume() {
+	    datasource.open();
+	    super.onResume();
+	  }
+
+	  @Override
+	  protected void onPause() {
+	    datasource.close();
+	    super.onPause();
+	  }
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.aleppo, menu);
-		return true;
-	}
-
-}
