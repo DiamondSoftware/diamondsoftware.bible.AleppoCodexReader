@@ -20,9 +20,9 @@ import android.util.Log;
 @SuppressLint("SdCardPath")
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
-  public static final String TABLE_VERSES = "verses";
+  public static final String TABLE_VERSES = "verse";
   public static final String COLUMN_ID = "_id";
-  public static final String COLUMN_VERSE = "verse";
+  public static final String COLUMN_VERSE = "text";
 
   private static final String DATABASE_NAME = "BibleText.sqlite";
   private static final int DATABASE_VERSION = 1;
@@ -73,25 +73,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
   * Creates a empty database on the system and rewrites it with your own database.
   * */
 public void createDataBase() throws IOException
-{
-	boolean dbExist = checkDataBase();
-	if(dbExist)
-	{
-		//do nothing - database already exist
-	}
-	else {
- 
-			//By calling this method and empty database will be created into the default system path
-			//of your application so we are gonna be able to overwrite that database with our database.
-				this.getReadableDatabase();
-				try 
-				{
-					copyDataBase();
-				} 
-				catch (IOException e) 
-				{
-					throw new Error("Error copying database");
-				}
+{		
+	//By calling this method and empty database will be created into the default system path
+	//of your application so we are gonna be able to overwrite that database with our database.
+		this.getReadableDatabase();
+		try 
+		{
+			copyDataBase();
+		} 
+		catch (IOException e) 
+		{
+			throw new Error("Error copying database");
 		}
  	}
  

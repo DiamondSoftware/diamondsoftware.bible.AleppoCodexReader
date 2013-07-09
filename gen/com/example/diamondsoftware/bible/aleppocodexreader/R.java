@@ -181,8 +181,10 @@ public final class R {
         public static final int action_settings=0x7f0a0007;
         public static final int button=0x7f0a0001;
         public static final int button1=0x7f0a0003;
+        public static final int id_translation_aleppo_hebrew=0x7f0a0009;
+        public static final int id_translation_elberfelder=0x7f0a000a;
+        public static final int id_translation_king_james_version=0x7f0a0008;
         public static final int textView1=0x7f0a0002;
-        public static final int translation_king_james_version=0x7f0a0008;
         public static final int viewer=0x7f0a0000;
     }
     public static final class layout {
@@ -209,6 +211,9 @@ public final class R {
         public static final int hello_world=0x7f070002;
         public static final int help=0x7f070003;
         public static final int main_menu=0x7f070004;
+        public static final int menu_translation_aleppo_hebrew=0x7f07000f;
+        public static final int menu_translation_elberfelder=0x7f070010;
+        public static final int menu_translation_king_james_version=0x7f07000e;
         public static final int settings=0x7f070005;
         public static final int splash=0x7f070006;
         public static final int splash_desc1=0x7f070007;

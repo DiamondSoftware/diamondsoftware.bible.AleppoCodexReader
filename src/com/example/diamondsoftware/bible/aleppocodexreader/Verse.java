@@ -7,7 +7,7 @@ package com.example.diamondsoftware.bible.aleppocodexreader;
 public class Verse {
 		
   private long id;
-  private String verse;
+  private String text;
 
   public long getId() {
     return id;
@@ -18,16 +18,16 @@ public class Verse {
   }
 
   public String getVerse() {
-    return verse;
+    return text;
   }
 
   public void setVerse(String verse) {
-    this.verse = verse;
+    this.text = verse;
   }
 
   // Will be used by the ArrayAdapter in the ListView
   @Override
   public String toString() {
-    return verse;
+    return text;
   }
 } 

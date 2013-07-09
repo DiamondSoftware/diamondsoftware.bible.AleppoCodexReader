@@ -64,6 +64,7 @@ public class AleppoDataSource {
   }
 
   public Verse createVerse(String verse) {
+	  
     ContentValues values = new ContentValues();
     values.put(MySQLiteHelper.COLUMN_VERSE, verse);
     long insertId = database.insert(MySQLiteHelper.TABLE_VERSES, null,
@@ -80,9 +81,12 @@ public class AleppoDataSource {
     public List<Verse> getAllVerses() {
     List<Verse> verses = new ArrayList<Verse>();
 
-    Cursor cursor = database.query(MySQLiteHelper.TABLE_VERSES,
-    		allColumns, null, null, null, null, null);
-
+    //Cursor cursor = database.query(MySQLiteHelper.TABLE_VERSES,
+    	//	allColumns, null, null, null, null, null);
+    String book_id = new String("6");
+    Cursor cursor = database.rawQuery("SELECT " + MySQLiteHelper.COLUMN_ID  + "," +   MySQLiteHelper.COLUMN_VERSE
+    + " FROM " + MySQLiteHelper.TABLE_VERSES + " WHERE book_id = ?", new String[] {book_id});
+           
     cursor.moveToFirst();
     while (!cursor.isAfterLast()) {
       Verse verse = cursorToVerse(cursor);

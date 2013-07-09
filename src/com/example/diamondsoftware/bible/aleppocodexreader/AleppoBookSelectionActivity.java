@@ -9,6 +9,7 @@ import java.util.List;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
@@ -16,6 +17,29 @@ public class AleppoBookSelectionActivity extends ListActivity {
 	  private AleppoDataSource datasource;
 	  ArrayAdapter<Verse> adapter;
 	  
+	  @Override
+	  public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    case R.id.id_translation_king_james_version:
+	      // change the db to the kjv;
+	    	datasource.close();
+	    	
+	    	
+	      break;
+	      
+	    case R.id.id_translation_aleppo_hebrew:
+		      // change the db so the kv;
+		
+	    	break;
+	    case R.id.id_translation_elberfelder:
+		      // change the db so the kv;
+
+	    	break;
+	      
+	      
+	    }
+	    return super.onOptionsItemSelected(item);
+	  }	  
 	  
 	  @Override
 		public boolean onCreateOptionsMenu(Menu menu) {
