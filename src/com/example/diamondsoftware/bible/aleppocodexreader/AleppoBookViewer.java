@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -65,7 +66,36 @@ public class AleppoBookViewer extends ImageView {
         
     }
     
-    
+    public void verseIndexPan(int from_x, int to_x, int from_y, int to_y)
+	{
+			//what is the right extent?
+
+    		Drawable imageLocal = getDrawable();
+	    	Rect r = imageLocal.getBounds();	    	
+	    	//matrix.mapRect
+	    	int xLeft = r.left;
+	    	int yTop = r.top;
+	    	int xRight = r.right;
+	    	int yBottom = r.bottom;
+    	
+			//work out how much further right we need to move or left?!
+	    	    	
+    		float deltaX = to_x - xRight;
+	        float deltaY = to_y - yTop;
+	        //float fixTransX = getFixDragTrans(deltaX, viewWidth, origWidth * saveScale);
+	        //float fixTransY = getFixDragTrans(deltaY, viewHeight, origHeight * saveScale);
+	        
+	        //matrix.postTranslate(deltaX, deltaY);
+
+	        // hack!
+	        matrix.postTranslate(200, 200);
+	        
+	        fixTrans();
+	        last.set(to_x, to_y);
+	        setImageMatrix(matrix);
+	        invalidate();
+	}
+       
     public int convertToDp(int input) { // Get the screen's density scale 
     	final float logicalDensity = getResources().getDisplayMetrics().density; 
     	// Convert the dps to pixels, based on density scale 
@@ -218,6 +248,12 @@ public class AleppoBookViewer extends ImageView {
         });
     }
 
+    
+    
+    
+    
+	
+    
     public void setMaxZoom(float x) {
         maxScale = x;
     }

@@ -7,11 +7,16 @@ package com.example.diamondsoftware.bible.aleppocodexreader;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 
 public class AleppoBookSelectionActivity extends ListActivity {
 	  private AleppoDataSource datasource;
@@ -24,7 +29,6 @@ public class AleppoBookSelectionActivity extends ListActivity {
 	  public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	    case R.id.id_translation_king_james_version:
-	      // change the db to the kjv;
 	    	datasource.close();
 		    datasource = new AleppoDataSource(this, "KJV.sqlite");
 		    datasource.open();
@@ -34,7 +38,6 @@ public class AleppoBookSelectionActivity extends ListActivity {
 	      break;
 	      
 	    case R.id.id_translation_aleppo_hebrew:
-		      // change the db so the kv;
 	    	datasource.close();
 		    datasource = new AleppoDataSource(this, "BibleText.sqlite");
 		    datasource.open();
@@ -44,7 +47,6 @@ public class AleppoBookSelectionActivity extends ListActivity {
 	    	break;
 
 	    case R.id.id_translation_elberfelder:
-		      // change the db so the kv;
 	    	datasource.close();
 		    datasource = new AleppoDataSource(this, "Elberfelder_1905.sqlite");
 		    datasource.open();
@@ -83,11 +85,39 @@ public class AleppoBookSelectionActivity extends ListActivity {
 	     switch (view.getId()) 
 	    {   
 	     // grab the index and manipulate the image so that the appropriate verse is highlighted on the image
-
+	     	
 	    }
 	    adapter.notifyDataSetChanged();
 	  }
-
+	  
+	  public void onListItemClick(ListView parent, View view, int position, long id)
+	    {
+			LayoutInflater inflater = (LayoutInflater) this.getSystemService( Context.LAYOUT_INFLATER_SERVICE );			
+			View aleppo_view = (View) inflater.inflate(R.layout.activity_aleppo_book_selection, null);				
+			final ImageView imageV = (ImageView) aleppo_view.findViewById(R.id.viewer);		
+			Log.d("ListView", String.valueOf(position));
+		  
+			
+			  if (position == 0)
+		        {
+				  // pan the image to the given x,y
+				  // ensure the image scale is retained
+				  ((AleppoBookViewer) imageV).verseIndexPan(0, 1100, 0, 150); // y is the top not bottom to which we want to move the image
+		        }
+		        else
+								
+			if (position == 1)
+	        {
+				  ((AleppoBookViewer) imageV).verseIndexPan(0, 1100, 0, 270);
+	        }
+	        else
+	        if (position == 2)
+	        {
+				 ((AleppoBookViewer) imageV).verseIndexPan(0, 1100, 0, 440);
+	        }	        	
+	    }
+	  
+	  
 	  @Override
 	  protected void onResume() {
 	    datasource.open();
