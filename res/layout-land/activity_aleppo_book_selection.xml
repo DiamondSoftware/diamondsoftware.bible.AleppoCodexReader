@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AleppoActivity" >
+    tools:context=".AleppoActivity"
+    android:background="@layout/rounded_border_1"
+     >
 
    
     <com.example.diamondsoftware.bible.aleppocodexreader.AleppoBookViewer
@@ -42,7 +44,4 @@
         android:headerDividersEnabled="true"
         tools:listitem="@android:layout/activity_list_item" >
     </ListView>
-    
-    
-    
 </RelativeLayout>

@@ -15,5 +15,8 @@
 	
 	<string name="button_back_page">Back</string>
 	<string name="button_next_page">Next</string>
-		
+
+	<string name="menu_translation_king_james_version">KJV</string>
+	<string name="menu_translation_aleppo_hebrew">Aleppo Hebrew</string>
+	<string name="menu_translation_elberfelder">Elberfelder</string>
 </resources>
