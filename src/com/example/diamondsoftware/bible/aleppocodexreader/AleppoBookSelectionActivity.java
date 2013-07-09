@@ -17,26 +17,41 @@ public class AleppoBookSelectionActivity extends ListActivity {
 	  private AleppoDataSource datasource;
 	  ArrayAdapter<Verse> adapter;
 	  
+	  private String defaultdatabaseFileName = "BibleText.sqlite";
+	  List<Verse> values;
+	  
 	  @Override
 	  public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	    case R.id.id_translation_king_james_version:
 	      // change the db to the kjv;
 	    	datasource.close();
-	    	
-	    	
+		    datasource = new AleppoDataSource(this, "KJV.sqlite");
+		    datasource.open();
+		    values = datasource.getAllVerses();
+		    adapter = new ArrayAdapter<Verse>(this, android.R.layout.simple_list_item_1, values);
+		    setListAdapter(adapter); 		    	
 	      break;
 	      
 	    case R.id.id_translation_aleppo_hebrew:
 		      // change the db so the kv;
-		
+	    	datasource.close();
+		    datasource = new AleppoDataSource(this, "BibleText.sqlite");
+		    datasource.open();
+		    values = datasource.getAllVerses();
+		    adapter = new ArrayAdapter<Verse>(this, android.R.layout.simple_list_item_1, values);
+		    setListAdapter(adapter); 		    	
 	    	break;
+
 	    case R.id.id_translation_elberfelder:
 		      // change the db so the kv;
-
-	    	break;
-	      
-	      
+	    	datasource.close();
+		    datasource = new AleppoDataSource(this, "Elberfelder_1905.sqlite");
+		    datasource.open();
+		    values = datasource.getAllVerses();
+		    adapter = new ArrayAdapter<Verse>(this, android.R.layout.simple_list_item_1, values);
+		    setListAdapter(adapter); 		    	
+	    	break;	      
 	    }
 	    return super.onOptionsItemSelected(item);
 	  }	  
@@ -54,9 +69,9 @@ public class AleppoBookSelectionActivity extends ListActivity {
 	  {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_aleppo_book_selection);
-	    datasource = new AleppoDataSource(this);
+	    datasource = new AleppoDataSource(this, defaultdatabaseFileName);
 	    datasource.open();
-	    List<Verse> values = datasource.getAllVerses();
+	    values = datasource.getAllVerses();
 	    adapter = new ArrayAdapter<Verse>(this, android.R.layout.simple_list_item_1, values);
 	    setListAdapter(adapter);
 	  }

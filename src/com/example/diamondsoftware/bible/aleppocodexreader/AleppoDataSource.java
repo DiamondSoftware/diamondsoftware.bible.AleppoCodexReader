@@ -25,9 +25,12 @@ public class AleppoDataSource {
 		  MySQLiteHelper.COLUMN_ID,
 		  MySQLiteHelper.COLUMN_VERSE };
 
-  public AleppoDataSource(Context context) 
+  String databaseFileName;
+  
+  public AleppoDataSource(Context context, String dbFileName) 
   {
-    dbHelper = new MySQLiteHelper(context);
+	  this.databaseFileName = dbFileName;
+	  dbHelper = new MySQLiteHelper(context, databaseFileName);
   
   //new
     try {	 
@@ -41,48 +44,25 @@ public class AleppoDataSource {
   }
 
   public void open() throws SQLException 
-  {
-    //database = dbHelper.getWritableDatabase();
-	  
-	 //new
+  {	  
   	try 
   	{    	 
-  		database = dbHelper.openDataBase();
-  	 
+  		database = dbHelper.openDataBase(databaseFileName);	 
   	}
   	catch(SQLException sqle)
   	{    	 
   		throw sqle;    	 
   	}
-
-	  
-  
   }
 
   public void close() {
     dbHelper.close();
   }
 
-  public Verse createVerse(String verse) {
-	  
-    ContentValues values = new ContentValues();
-    values.put(MySQLiteHelper.COLUMN_VERSE, verse);
-    long insertId = database.insert(MySQLiteHelper.TABLE_VERSES, null,
-        values);
-    Cursor cursor = database.query(MySQLiteHelper.TABLE_VERSES,
-        allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
-        null, null, null);
-    cursor.moveToFirst();
-    Verse newVerse= cursorToVerse(cursor);
-    cursor.close();
-    return newVerse;
-  }
 
     public List<Verse> getAllVerses() {
     List<Verse> verses = new ArrayList<Verse>();
 
-    //Cursor cursor = database.query(MySQLiteHelper.TABLE_VERSES,
-    	//	allColumns, null, null, null, null, null);
     String book_id = new String("6");
     Cursor cursor = database.rawQuery("SELECT " + MySQLiteHelper.COLUMN_ID  + "," +   MySQLiteHelper.COLUMN_VERSE
     + " FROM " + MySQLiteHelper.TABLE_VERSES + " WHERE book_id = ?", new String[] {book_id});

@@ -24,11 +24,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
   public static final String COLUMN_ID = "_id";
   public static final String COLUMN_VERSE = "text";
 
-  private static final String DATABASE_NAME = "BibleText.sqlite";
+  //private static String DATABASE_NAME = "BibleText.sqlite";
+  
+  //private static String DATABASE_NAME = "KJV.sqlite";
+  
   private static final int DATABASE_VERSION = 1;
   private static String DATABASE_PATH = "/data/data/com.example.diamondsoftware.bible.aleppocodexreader/databases/";
   private SQLiteDatabase myDataBase; 
   private final Context myContext;
+  
+  private String databaseFileName;
   
   
   /**
@@ -36,36 +41,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
    * Takes and keeps a reference of the passed context in order to access to the application assets and resources.
    * @param context
    */
-  public MySQLiteHelper(Context context) 
+  public MySQLiteHelper(Context context, String dbFileName) 
  {
-   super(context, DATABASE_NAME, null, DATABASE_VERSION);
+   super(context, dbFileName, null, DATABASE_VERSION);
+   this.databaseFileName = dbFileName;
    this.myContext = context;
- }
-  /**
-   * Check if the database already exist to avoid re-copying the file each time you open the application.
-   * @return true if it exists, false if it doesn't
-   */
- private boolean checkDataBase(){
-  
-	 SQLiteDatabase checkDB = null;
-  
-	 try
-	 {
-		 String myPath = DATABASE_PATH + DATABASE_NAME;
-		 checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-	  
-	 }
-	 catch(SQLiteException e)
-	 {
-		 //database does't exist yet.
-	 }
-  
- if(checkDB != null)
- {
-  	 checkDB.close();
-  }
-  
- return checkDB != null ? true : false;
  }
   
   
@@ -75,7 +55,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 public void createDataBase() throws IOException
 {		
 	//By calling this method and empty database will be created into the default system path
-	//of your application so we are gonna be able to overwrite that database with our database.
+	//of your application so we will be able to overwrite that database with our database.
 		this.getReadableDatabase();
 		try 
 		{
@@ -95,10 +75,10 @@ public void createDataBase() throws IOException
 private void copyDataBase() throws IOException{
 
 	//Open your local db as the input stream
-	InputStream myInput = myContext.getAssets().open(DATABASE_NAME);
+	InputStream myInput = myContext.getAssets().open(databaseFileName);
 
 	//Path to the just created empty db
-	String outFileName = DATABASE_PATH + DATABASE_NAME;
+	String outFileName = DATABASE_PATH + databaseFileName;
 
 	//Open the empty db as the output stream
 	OutputStream myOutput = new FileOutputStream(outFileName);
@@ -119,10 +99,10 @@ private void copyDataBase() throws IOException{
 }
  
 
-public SQLiteDatabase openDataBase() throws SQLException
+public SQLiteDatabase openDataBase(String databaseFileName) throws SQLException
 {
  	//Open the database
-	String myPath = DATABASE_PATH + DATABASE_NAME;
+	String myPath = DATABASE_PATH + databaseFileName;
 	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 	return myDataBase;
 }
